@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Phil Elauria
+  - __Scrum Master__: Dave Mun
+  - __Development Team Members__: Essam Al Joubori, Dave Mun, Phil Elauria
 
 ## Table of Contents
 
