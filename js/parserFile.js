@@ -8,10 +8,15 @@ var request = require('request');
 
 module.exports = {
   parser : function(req, res){
-    //var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + item);
-    request("http://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=tomato", function(error, response, body){
+    var itemsList = req.body.items.replace(/ /g,'').split(','); 
+    itemsList.forEach(function(item){
+    var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + item);
+    request(getData, function(error, response, body){
       console.log(body);
         res.send(body);
+    }); 
     });
   }
-};
+}  
+
+//"http://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=tomato"
