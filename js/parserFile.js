@@ -8,27 +8,10 @@ var request = require('request');
 
 module.exports = {
   parser : function(req, res){
-
-
-    //go through essams client POST data
-    var itemsList = req.body.items.replace(/ /g,'').split(','); 
-
-    //https://docs.angularjs.org/api/ng/service/$http
-    itemsList.forEach(function(item){
-      var testItem = "https://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=tomato";
-      var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + item);
-     //http://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=potato
-      $http.get(testItem)     
-      .success(function(data){
-        console.log('data from server', data);
-      })
-      .error(function(){
-        console.log('ERROR!!!!!!!!!!!!!!!');
-      });
-  })
-
-
-  res.send(req.body.items);
-
+    //var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + item);
+    request("http://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=tomato", function(error, response, body){
+      console.log(body);
+        res.send(body);
+    });
   }
 };
