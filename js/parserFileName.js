@@ -1,5 +1,5 @@
 module.exports = {
   parserFuncName : function(req, res){
-    res.send("doug's beard!");
+    res.send(req.body.items);
   }
 }
