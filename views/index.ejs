@@ -1,16 +1,68 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Shop 'N Save</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
   </head>
-  <body>
-  <h1>Shpo 'N Save</h1>
+  <body ng-app="ShopNSave">
+  <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Shpo 'N Save</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <!-- <ul class="nav navbar-nav">
+            <li><a href="/"></a></li>
+            <li><a href="/mentor"></a></li>
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/sign-up">Create Account</a></li>
+            <li><a href="/sign-in">Sign In </a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+      <div>
+        <p>Enter an item/items</p>
+        <form name="ShoppingForm" ng-submit='addItem()'>
+          <!-- input for the item -->
+          <input name='itemList' type="text"
+          placeholder = "Enter an item/items here"/>
+          <!-- TODO -->
+          <!-- <input name='distance' type="number"
+          placeholder = "Enter a zipcode"/> -->
+          <button type="submit" class="btn btn-success">Add</button>
+        </form> 
+      </div> 
+      <!-- Listing results back from the API -->
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in items">
+              <th>{{item.name}}</th>
+              <th>{{item.price}}</th>
+            </tr>  
+          </tbody>        
+        </table>
+      </div>
+    </div><!-- /.container -->
   </body>
 </html>
