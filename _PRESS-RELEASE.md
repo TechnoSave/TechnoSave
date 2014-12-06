@@ -17,28 +17,28 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  Shop 'N Save
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Shop 'N Save helps everyone save money and time while shopping.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  This app finds the lowest prices for your shopping needs within a given distance near the user.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  Shopping is hard. Shop 'N Save is easy.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  Spend less time shopping and more time saving.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  Phil Elauria: "Download this app, get a free cookie!"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  Visit our live demo at our Heroku location (coming soon).
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  Quote from a customer: "Shop 'N Save saved me money and time!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  Click {{heroku link}} to start saving!
