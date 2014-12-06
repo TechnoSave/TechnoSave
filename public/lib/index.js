@@ -12,12 +12,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('ItemListCtrl', ['$scope', function ($scope) {
+app.controller('ItemListCtrl', ['$scope', function ($scope, $http) {
   
   console.log('ItemListCtrl was loaded!');
 
   $scope.addItem = function() {
-    console.log("clicked");
+    $http.post('/*')
+      .success(function(data){
+        console.log('data from server', data);
+      })
   };
 
 
