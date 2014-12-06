@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="App">
   <head>
-    <title>Shop 'N Save</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+
+    <script src="lib/index.js"></script>
 
   </head>
-  <body ng-app="ShopNSave">
+  <body>
   <!-- Static navbar -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
       <div class="container">
@@ -34,35 +40,8 @@
     </nav>
 
     <div class="container">
-      <div>
-        <p>Enter an item/items</p>
-        <form name="ShoppingForm" ng-submit='addItem()'>
-          <!-- input for the item -->
-          <input name='itemList' type="text"
-          placeholder = "Enter an item/items here"/>
-          <!-- TODO -->
-          <!-- <input name='distance' type="number"
-          placeholder = "Enter a zipcode"/> -->
-          <button type="submit" class="btn btn-success">Add</button>
-        </form> 
-      </div> 
-      <!-- Listing results back from the API -->
-      <div>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="item in items">
-              <th>{{item.name}}</th>
-              <th>{{item.price}}</th>
-            </tr>  
-          </tbody>        
-        </table>
-      </div>
-    </div><!-- /.container -->
+      <div ui-view></div>
+    </div>
+
   </body>
 </html>
