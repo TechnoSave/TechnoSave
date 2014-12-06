@@ -1,3 +1,5 @@
+var request = require('request');
+
     //==============Walmart API URIs======================
     var searchUrl = 'http://api.walmartlabs.com/v1/search';
     var itemIDLookupUrl = 'http://api.walmartlabs.com/v1/items/';
@@ -6,6 +8,7 @@
 
 module.exports = {
   parser : function(req, res){
+
 
     //go through essams client POST data
     var itemsList = req.body.items.replace(/ /g,'').split(','); 
@@ -26,5 +29,6 @@ module.exports = {
 
 
   res.send(req.body.items);
+
   }
-}
+};

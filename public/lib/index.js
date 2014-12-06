@@ -33,7 +33,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   console.log(items);
 
   $scope.addItem = function() {
-    $http.post('/*', {items: $scope.itemsModel})
+    $http.post('/', {items: $scope.itemsModel})
       .success(function(data){
         console.log('data from server', data);
         // sample data recieved

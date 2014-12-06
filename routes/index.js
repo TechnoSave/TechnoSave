@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
   res.render('index', { title: "Shop 'N Save" });
 });
 
-router.post('/*', function(req, res) {
+router.post('/', function(req, res) {
   js.parser(req, res);
 });
 
