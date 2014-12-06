@@ -18,7 +18,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
 
 
   $scope.addItem = function() {
-    $http.post('/*', $scope.itemsModel)
+    $http.post('/*', {items: $scope.itemsModel})
       .success(function(data){
         console.log('data from server', data);
       })
