@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-  //EDIT ME
-var model = require('../js/parserFileName.js');
+var model = require('../js/parserFile.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -9,8 +8,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/*', function(req, res) {
-    //EDIT ME
-  js.parserFunctionName(req, res);
+  js.parser(req, res);
 });
 
 module.exports = router;
