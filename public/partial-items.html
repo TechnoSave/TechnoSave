@@ -1,0 +1,33 @@
+<div ng-controller="ItemListCtrl">
+  <div>
+    <p>Enter an item/items</p>
+      <form role="form" ng-submit="addItem()">
+        <div class="col-md-6">
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="itemsModel">
+            <span class="input-group-btn">
+            <button type="submit" class="btn btn-default search">Submit</button>
+            </span>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </form>
+  </div> 
+  <!-- Listing results back from the API -->
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items">
+          <th>{{item.name}}</th>
+          <th>{{item.price}}</th>
+        </tr>  
+      </tbody>        
+    </table>
+  </div>
+</div>
