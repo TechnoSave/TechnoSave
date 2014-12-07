@@ -26,10 +26,10 @@ Once the project moves into development, the press release can be used as a touc
   This app finds the lowest prices for your shopping needs within a given distance near the user.
 
 ## Problem ##
-  Shopping is hard. Shop 'N Save is easy.
+  Ever wonder where to get the best-priced items locally on your shopping list? 
 
 ## Solution ##
-  Spend less time shopping and more time saving.
+  Shop 'N Save goes through your shopping list and shows you where the best prices are for your items so you can plan your shopping errands accordingly.
 
 ## Quote from You ##
   Phil Elauria: "Download this app, get a free cookie!"
