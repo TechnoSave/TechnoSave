@@ -16,6 +16,9 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   
   console.log('ItemListCtrl was loaded!');
 
+  //hide table results when the app loaded
+  $('.table').hide();
+
   $scope.addItem = function() {
     $http.post('/', {items: $scope.itemsModel})
       .success(function(data){

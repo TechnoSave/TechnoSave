@@ -1,0 +1,31 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  background-color: #ECECEC;
+}
+
+.navbar-brand {
+  font-size: 1.7em;
+  font-weight: 500;
+}
+
+.navbar-default {
+  background-color: #22313F;
+}
+
+.navbar-default a, .navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand {
+  color: #ECECEC;
+    box-shadow: 10px #ECECEC;
+}
+.navbar-default a:hover, .navbar-default .navbar-nav > li > a:hover, .navbar-default:hover .navbar-brand:hover {
+  color: #ECECEC;
+}
+
+#form {
+  margin: 200px auto;
+  width: 50%;
+}
+
+button {
+  border-radius: 0px !important;
+}
+
