@@ -8,6 +8,7 @@ var request = require('request');
 
 module.exports = {
   parser : function(req, res){
+
     var itemsList = req.body.items.replace(/ /g,'').split(','); 
     itemsList.forEach(function(item){
     var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + item);
@@ -20,3 +21,4 @@ module.exports = {
 }  
 
 //"http://api.walmartlabs.com/v1/search?apiKey=4z8pkk2ycuvewyydr4mf3ha5&query=tomato"
+
