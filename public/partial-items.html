@@ -1,9 +1,10 @@
 <div ng-controller="ItemListCtrl">
+  
   <div id="form">
       <form role="form" ng-submit="addItem()">
         <div class="col-md-12">
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="itemsModel">
+            <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="inputModel">
             <span class="input-group-btn">
             <button type="submit" class="btn btn-primary search">Start Saving!</button>
             </span>
@@ -12,8 +13,31 @@
         </div>
       </form>
   </div> <!-- /#form -->
+  
+
+  <!---Shopping Cart-->
+    <div>
+      <table class="table" ng-show="cart">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in cart">
+            <th>{{item.name}}</th>
+            <th>{{item.price}}</th>
+            <th>{{item.store}}</th>
+          </tr>  
+        </tbody>        
+      </table>
+    </div>
+  <!---Shopping Cart-->
   </br></br></br></br>
+
   <!-- Listing results back from the API -->
+
   <div>
     <table class="table" ng-show="items">
       <thead>
@@ -31,4 +55,5 @@
       </tbody>        
     </table>
   </div>
+
 </div>
