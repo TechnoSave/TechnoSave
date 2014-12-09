@@ -6,6 +6,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       templateUrl: 'partial-items.html'
+    })
+    .state('map', {
+      url: '/map',
+      templateUrl: 'map.html'
     });
 
     $urlRouterProvider.otherwise('/');
