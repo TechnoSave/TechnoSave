@@ -1,6 +1,5 @@
-var request = require('request');
-var events = require('events');
 var Promise = require("bluebird");
+var request = Promise.promisify(require('request'));
  
     //==============Walmart API URIs======================
     var searchUrl = 'http://api.walmartlabs.com/v1/search';
@@ -13,90 +12,41 @@ module.exports = {
     //create itemsList array of user inputs, whitespace sanitized and put in array
     var itemsList = req.body.items.replace(/ /g,'').split(','),
         output = [],
-        i,
-        done = 0,
-        notSent = true,
         max = 1;
- 
-    //create event listener to listen when list of walmart requests finish
-    var walmartAPI = new events.EventEmitter();
-   
-    var sendList = function (){
-    // //do something in here - we have access to output - which is an array of all possible items objs
-    //     //-not structured well, is an array of 10 possible matches for every input item, so possibly 10*n items
-    //     //itemsList[i].price, .itemId, .name;
-       
-        res.send(output);
-    };
- 
-    //aysnc calls are queued in sync time
-    //if apiComplete flag is true , then the last of the async calls have completed
-
-    walmartAPI.on('Finished Requests', sendList);
 
     //go through itemsList array of user inputs and get price for each from Wal-Mart API
-    for(i = 0; i < itemsList.length; i++){
+    for(var i = 0; i < itemsList.length; i++){
         //construct GET url
         var getURL = (searchUrl + '?apiKey=' + APIKey + '&query=' + itemsList[i]);
        
-        request(getURL, function (error, response, body) {
-            var apiItemsList = JSON.parse(body).items.slice(0, max);
+        //ask walmart API for data
+        request(getURL)
+        //async callback to parse data
+        .then(function(data){
+            //create list of item objects - limited to var "max" results per item.
+            var apiItemsList = JSON.parse(data[0].body).items.slice(0, max);
            
-            //here we have access to walmart API's response to item search - list of matching products  
+            //for list of matching products, trim object and add to output  
             apiItemsList.forEach(function(itemObj){
-                //construct item info from API return
+                //construct new item object
                 var apiItem = {};
- 
+
                 //get price, itemID, and name
-                apiItem.price = itemObj.msrp || itemObj.salePrice;
+                    //if salePrice does not exist, default to MSRP
+                apiItem.price = itemObj.salePrice || itemObj.msrp;
                 apiItem.itemId = itemObj.itemId;
                 apiItem.name = itemObj.name;
                 
                 //store item info obj (that is a possible match) into the output
                 output.push(apiItem);
             });
- 
-            done++;
+
+            //if query that just finished is the last item in the search terms,
+            //send data back to client
+            if(data[0].request.req.path.slice(49) === itemsList[itemsList.length-1]){
+                res.send(output);
+            } 
         });
     }
- 
-
-    var check = function(){
-        if(done === itemsList.length && notSent){
-            walmartAPI.emit('Finished Requests');
-            notSent = false;
-        }
-    }
-
-    //for loop completed, parse accumulated data and send it
-    setInterval(check, 500);
   }
 }
- 
-            //============deprecated=========
-                // //execute GET url request
-                // .get(getData)
-                // //async success callback
-                // .on('response', function(response){
-                //     console.log("====================");
-                //     console.log(Object.keys(response));
-                //     console.log("====================");
-                //     var apiItemsList = response.body.items;
-                //     //here we have access to walmart API's response to item search - list of matching products
-                //      apiItemsList.forEach(function(itemObj){
-                //         //construct item info from API return
-                //         var apiItem = {};
-                //         //get price, itemID, and name
-                //         apiItem.price = itemObj.msrp;
-                //         apiItem.itemId = itemObj.itemId;
-                //         apiItem.name = itemObj.name;
-                //         //store item info obj (that is a possible match) into the output
-                //         output.push(apiItem);
-                //      });
- 
-                //     //signal end of all async calls
-                //     if(i == itemsList.length-1){
-                //         walmartAPI.emit('Finished Requests');
-                //     }
-                // });
-            //============deprecated=========
