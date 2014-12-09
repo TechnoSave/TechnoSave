@@ -33,7 +33,17 @@ button {
   border-radius: 0px !important;
 }
 table {
-  width: 40% !important;
+  width: 50% !important;
   margin:auto ;
+}
+
+.cartTable {
+  position: absolute;
+  width: 10% !important;
+}
+
+.cartBtn {
+  border-radius: 5px !important;
+  margin-right: 0%;
 }
 
