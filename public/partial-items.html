@@ -3,6 +3,7 @@
   <div id="form">
       <form role="form" ng-submit="addItem()">
         <div class="col-md-12">
+          <div class="error alert-danger"></div>
           <div class="input-group input-group-lg">
             <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="inputModel">
             <span class="input-group-btn">
@@ -17,19 +18,24 @@
 
   <!---Shopping Cart-->
     <div>
-      <table class="table" ng-show="cart">
+      <table class="table table-hover cartTable" ng-show="cart">
         <thead>
           <tr>
-            <th>Items in Cart</th>
+            <th>Item</th>
             <th>Price</th>
+            <th>Store</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in cart" id="cart">
-            <th><button type="button" style="margin-right:10px;">X</button>{{item.name}}</th>
-            <th>{{item.price}}</th>
-            <th>{{item.store}}</th>
+            <td>{{item.name | limitTo: 20}}...</td>
+            <td>{{item.price}}</td>
+            <td>{{item.store}}</td>
           </tr>  
+          <td><button class="btn btn-success">Checkout</button>
+          <td>Total: {{item.price * </td>
         </tbody>        
       </table>
     </div>
@@ -37,29 +43,33 @@
   </br></br></br></br>
 
   <!--- alert -->
-  <div class="alert alert-info alert-dismissable cartTip" ng-show="cartTip">
+  <!-- <div class="alert alert-info alert-dismissable cartTip" ng-show="cartTip">
      <button type="button" class="close" data-dismiss="alert" 
         aria-hidden="true">
         &times;
      </button>
      Click items to put them in your cart!
-  </div>
+  </div> -->
   <!-- alert -->
 
   <!-- Listing results back from the API -->
   <div>
-    <table class="table" ng-show="items">
+    <table class="table table-hover" ng-show="items">
       <thead>
         <tr>
-          <th>Item in Shopping List</th>
+          <th></th>
+          <th></th>
+          <th>Item</th>
           <th>Price</th>
+          <th>Store</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="item in items" ng-click="addToCart($event)" id="list">
-          <th><button type="button" style="margin-right:10px;">X</button>{{item.name}}</th>
-          <th>{{item.price}}</th>
-          <th>{{item.store}}</th>
+          <td><button class="btn btn-success cartBtn" ng-click="getItemId(item.name, item.price, item.store)">Add To Cart</button><td>
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.store}}</td>
         </tr>  
       </tbody>        
     </table>
