@@ -12,6 +12,7 @@
         </div>
       </form>
   </div> <!-- /#form -->
+  </br></br></br></br>
   <!-- Listing results back from the API -->
   <div>
     <table class="table" ng-show="items">
@@ -25,6 +26,7 @@
         <tr ng-repeat="item in items">
           <th>{{item.name}}</th>
           <th>{{item.price}}</th>
+          <th>{{item.store}}</th>
         </tr>  
       </tbody>        
     </table>
