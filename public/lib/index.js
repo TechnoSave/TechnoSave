@@ -16,15 +16,11 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   
   console.log('ItemListCtrl was loaded!');
 
-  //hide table results when the app loaded
-  $('.table').hide();
-
   $scope.addItem = function() {
     $http.post('/', {items: $scope.itemsModel})
       .success(function(data){
-        console.log('data from server', data);
-        // sample data recieved
-        $scope.items = data;  
+        console.log(data);
+        $scope.items = data;
       });
   };
 }]);
