@@ -69,7 +69,6 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
 
 }]);
 
-app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) {
-  
-
+app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) {  
+  geoMap();
 }]);
