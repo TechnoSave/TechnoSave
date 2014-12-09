@@ -37,9 +37,8 @@ table {
   margin:auto ;
 }
 
-.cartTable {
-  position: absolute;
-  width: 10% !important;
+.resultTable {
+  width: 100% !important;
 }
 
 .cartBtn {
