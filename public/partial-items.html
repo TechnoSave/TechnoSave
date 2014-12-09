@@ -1,10 +1,11 @@
 <div ng-controller="ItemListCtrl">
+  
   <div id="form">
       <form role="form" ng-submit="addItem()">
         <div class="col-md-12">
           <div class="error alert-danger"></div>
           <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="itemsModel">
+            <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="inputModel">
             <span class="input-group-btn">
             <button type="submit" class="btn btn-primary search">Start Saving!</button>
             </span>
@@ -13,21 +14,56 @@
         </div>
       </form>
   </div> <!-- /#form -->
+  
+
+  <!---Shopping Cart-->
+    <div>
+      <table class="table" ng-show="cart">
+        <thead>
+          <tr>
+            <th>Items in Cart</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in cart" id="cart">
+            <th><button type="button" style="margin-right:10px;">X</button>{{item.name}}</th>
+            <th>{{item.price}}</th>
+            <th>{{item.store}}</th>
+          </tr>  
+        </tbody>        
+      </table>
+    </div>
+  <!---Shopping Cart-->
+  </br></br></br></br>
+
+  <!--- alert -->
+  <div class="alert alert-info alert-dismissable cartTip" ng-show="cartTip">
+     <button type="button" class="close" data-dismiss="alert" 
+        aria-hidden="true">
+        &times;
+     </button>
+     Click items to put them in your cart!
+  </div>
+  <!-- alert -->
+
   <!-- Listing results back from the API -->
   <div>
-    <table class="table">
+    <table class="table" ng-show="items">
       <thead>
         <tr>
-          <th>Item</th>
+          <th>Item in Shopping List</th>
           <th>Price</th>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in itemsList">
-          <th>{{item.name}}</th>
+        <tr ng-repeat="item in items" ng-click="addToCart($event)" id="list">
+          <th><button type="button" style="margin-right:10px;">X</button>{{item.name}}</th>
           <th>{{item.price}}</th>
+          <th>{{item.store}}</th>
         </tr>  
       </tbody>        
     </table>
   </div>
+
 </div>

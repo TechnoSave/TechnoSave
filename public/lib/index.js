@@ -12,35 +12,40 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('ItemListCtrl', ['$scope', '$http', 'ListItems',  function ($scope, $http, ListItems) {
+app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   
   console.log('ItemListCtrl was loaded!');
+  $scope.tip = false;
+  $scope.cartTip = false;
 
-
-  //hide table results when the app loaded
-  //$('.table').hide();
-  //$scope.ListItems = ListItems;
-  $scope.addItem = function() {
-    $http.post('/', {items: $scope.itemsModel})
-      .success(function(data){
-        //$('#form').fadeOut();
-        //$('.table').fadeIn();
-        console.log('data from server', data);
-        // sample data recieved
-        $scope.itemsList = data;  
-      })
-
-      .error(function(){
-        $('.error').html('Oops! Something went wrong.').addClass('alert');
-      })
+  var showTip = function(){
+    $scope.cartTip = true;
   };
-}])
 
-.factory('ListItems', function(){
-  var name = "tomato";
-  var price = 5;
-  return {
-    name: name,
-    price: price
-  }
-});
+  var hideTip = function(){
+    $scope.cartTip = false;
+  };
+
+  $scope.addItem = function() {
+    $http.post('/', {items: $scope.inputModel})
+      .success(function(data){
+        if($scope.items === undefined){
+          showTip();
+          setInterval(hideTip, 3000);
+        }
+        $scope.items = $scope.items || [];
+        data.forEach(function(item){
+          $scope.items.push(item);
+        });
+      });
+  };
+
+  $scope.addToCart = function($event) {
+    $scope.cart = $scope.cart || [];
+    var item = angular.element($event.currentTarget);
+    var cart = angular.element(document.querySelector('#cart'));
+      console.log(cart.append);
+    cart.append(item.detach());
+  };
+
+}]);
