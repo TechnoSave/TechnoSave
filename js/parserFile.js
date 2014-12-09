@@ -17,6 +17,7 @@ module.exports = {
     //create event listener to listen when list of walmart requests finish
     var walmartAPI = new events.EventEmitter();
     
+
     var sendList = function (){
     //do something in here - we have access to output - which is an array of all possible items objs
         //-not structured well, is an array of 10 possible matches for every input item, so possibly 10*n items
@@ -28,8 +29,38 @@ module.exports = {
         
         res.send(output);
     }
+    //go through itemsList array of user inputs and get price for each from Wal-Mart API
+    for(var i = 0; i < itemsList.length; i++){
+        //construct GET url
+        var getData = (searchUrl + '?apiKey=' + APIKey + '&query=' + itemsList[i]);
+            request
+                //execute GET url request
+                .get(getData)
+                //async success callback
+                .on('response', function(response){       
+                  console.log("parserFile LINE 28: ", response.body.items);
+                    var apiItemsList = response.body.items;
+                    //here we have access to walmart API's response to item search - list of matching products
+                     apiItemsList.forEach(function(itemObj){
+                        //construct item info from API return
+                        var apiItem = {};
+                        //get price, itemID, and name
+                        apiItem.price = itemObj.msrp;
+                        apiItem.itemId = itemObj.itemId;
+                        apiItem.name = itemObj.name;
+                        //store item info obj (that is a possible match) into the output
+                        output.push(apiItem);
+                     });
+
+                    //signal end of all async calls
+                    if(i == itemsList.length-1){
+                        walmartAPI.emit('Finished Requests');
+                    }
+                }); 
+
 
     //aysnc calls are queued in sync time
+<<<<<<< Updated upstream
     //if apiComplete flag is true , then the last of the async calls have completed
     walmartAPI.on('Finished Requests', sendList);
     
