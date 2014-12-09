@@ -50,7 +50,7 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in cart" id="cart">
-            <td>{{item.name | limitTo: 20}}...</td>
+            <td>{{item.name | limitTo: 50}}...</td>
             <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
           </tr>  
