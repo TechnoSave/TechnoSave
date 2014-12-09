@@ -2,6 +2,7 @@
   <div id="form">
       <form role="form" ng-submit="addItem()">
         <div class="col-md-12">
+          <div class="error alert-danger"></div>
           <div class="input-group input-group-lg">
             <input type="text" class="form-control" placeholder="Enter a an item/items" ng-model="itemsModel">
             <span class="input-group-btn">
@@ -22,7 +23,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="item in items">
+        <tr ng-repeat="item in itemsList">
           <th>{{item.name}}</th>
           <th>{{item.price}}</th>
         </tr>  
