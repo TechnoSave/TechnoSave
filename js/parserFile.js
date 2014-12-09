@@ -12,7 +12,8 @@ module.exports = {
     //create itemsList array of user inputs, whitespace sanitized and put in array
     var itemsList = req.body.items.replace(/ /g,'').split(','),
         output = [],
-        max = 1;
+        max = 1,
+        completed = 0;
 
     //go through itemsList array of user inputs and get price for each from Wal-Mart API
     for(var i = 0; i < itemsList.length; i++){
@@ -39,11 +40,12 @@ module.exports = {
                 
                 //store item info obj (that is a possible match) into the output
                 output.push(apiItem);
+                completed++;
             });
 
             //if query that just finished is the last item in the search terms,
             //send data back to client
-            if(data[0].request.req.path.slice(49) === itemsList[itemsList.length-1]){
+            if(completed === itemsList.length){
                 res.send(output);
             } 
         });
