@@ -17,19 +17,19 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  Shop 'N Save
+  TechnoSave
 
 ## Sub-Heading ##
-  Shop 'N Save helps everyone save money and time while shopping.
+  Get the best deals on your tech-gear shopping list near you. 
 
 ## Summary ##
-  This app finds the lowest prices for your shopping needs within a given distance near the user.
+  This app finds the lowest prices for your electronics shopping list. Enter your items, get the results back on the best prices to plan your shopping day accordingly.
 
 ## Problem ##
-  Ever wonder where to get the best-priced items locally on your shopping list? 
+  Ever buy a new piece of tech-gear, only to find out later that you paid more than you had to? Ever just wonder if you're getting the best deal?
 
 ## Solution ##
-  Shop 'N Save goes through your shopping list and shows you where the best prices are for your items so you can plan your shopping errands accordingly.
+  Our app will tell you the best places to go for your shopping list. From there, you can buy those items knowing you're getting the best deals.
 
 ## Quote from You ##
   Phil Elauria: "Download this app, get a free cookie!"
@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
   Visit our live demo at our Heroku location (coming soon).
 
 ## Customer Quote ##
-  Quote from a customer: "Shop 'N Save saved me money and time!"
+  Quote from a customer: "The cookies are delicious!""
 
 ## Closing and Call to Action ##
   Click {{heroku link}} to start saving!
