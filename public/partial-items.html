@@ -13,7 +13,27 @@
           </div>
         </div>
       </form>
-  </div> <!-- /#form -->
+      <!-- Listing results back from the API -->
+      <table class="table table-hover resultTable" ng-show="items">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Store</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items" ng-click="addToSummary($event)" id="list">
+            <td><button class="btn btn-success cartBtn" ng-click="getItemId(item.name, item.price, item.store)">Add To Summary</button><td>
+            <td>{{item.name}}</td>
+            <td>{{item.price | currency:"$"}}</td>
+            <td>{{item.store}}</td>
+          </tr>  
+        </tbody>        
+      </table>
+  </div> <!-- /#results -->
   
 
   <!---Shopping Cart-->
@@ -30,12 +50,12 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in cart" id="cart">
-            <td>{{item.name | limitTo: 20}}...</td>
-            <td>{{item.price}}</td>
+            <td>{{item.name | limitTo: 50}}...</td>
+            <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
           </tr>  
-          <td><button class="btn btn-success">Checkout</button>
-          <td>Total: {{item.price * </td>
+          <td><button class="btn btn-success">Show Map</button>
+          <td>Total: {{ total | currency:"$"}}</td>
         </tbody>        
       </table>
     </div>
@@ -51,28 +71,4 @@
      Click items to put them in your cart!
   </div> -->
   <!-- alert -->
-
-  <!-- Listing results back from the API -->
-  <div>
-    <table class="table table-hover" ng-show="items">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Item</th>
-          <th>Price</th>
-          <th>Store</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="item in items" ng-click="addToCart($event)" id="list">
-          <td><button class="btn btn-success cartBtn" ng-click="getItemId(item.name, item.price, item.store)">Add To Cart</button><td>
-          <td>{{item.name}}</td>
-          <td>{{item.price}}</td>
-          <td>{{item.store}}</td>
-        </tr>  
-      </tbody>        
-    </table>
-  </div>
-
 </div>
