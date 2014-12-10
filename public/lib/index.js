@@ -1,7 +1,10 @@
 var app = angular.module('App', ['ui.router']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
   $stateProvider
     .state('home', {
       url: '/',
@@ -16,7 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   
   
   console.log('ItemListCtrl was loaded!');
@@ -41,14 +44,19 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
-      .success(function(data){
-        animate();
+      .success(function(data){  
+        if(data.length === 0){
+          $scope.empty = true;
+          $scope.items = undefined;
+          return;
+        }else{
+          $scope.empty = false;
+        }
         if($scope.items === undefined){
           showTip();
-          setInterval(hideTip, 3000);
-          
+          setInterval(hideTip, 3000);    
         }
-        $scope.items = $scope.items || [];
+        $scope.items = [];
         data.forEach(function(item){
           $scope.items.push(item);
         });
@@ -80,6 +88,14 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     }   
   };
 
+  //they clicked the map button in shopping list
+  $scope.map = function(){
+    $location.path("/map");
+  };
+
+  $scope.clearItems = function(){
+    $scope.items = [];
+  };
 }]);
 
 app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 

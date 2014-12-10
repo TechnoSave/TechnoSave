@@ -1,4 +1,13 @@
 <div ng-controller="ItemListCtrl">
+  <!--- alert -->
+  <div class="alert alert-danger alert-dismissable emptyTip" style="top:100px; position:relative;" ng-show="empty">
+     <button type="button" class="close" data-dismiss="alert" 
+        aria-hidden="true">
+        &times;
+     </button>
+     Error: No items found! Try a new keyword!
+  </div>
+  <!-- alert -->
   
   <div id="form">
       <form role="form" ng-submit="addItem()">
@@ -13,6 +22,12 @@
           </div>
         </div>
       </form>
+  </div>
+
+      
+      <button class="btn btn-danger" ng-click="clearItems()" ng-show="items" style="top:5px">Clear Items</button>
+      
+
       <!-- Listing results back from the API -->
       <table class="table table-hover resultTable" ng-show="items">
         <thead>
@@ -54,7 +69,7 @@
             <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
           </tr>  
-          <td><button class="btn btn-success">Show Map</button>
+          <td><button class="btn btn-success" ng-click="map()">Show Map</button>
           <td>Total: {{ total | currency:"$"}}</td>
         </tbody>        
       </table>
