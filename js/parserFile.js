@@ -37,7 +37,13 @@ module.exports = {
         //async callback to parse data
         .then(function(data){
             //create list of item objects - limited to var "max" results per item.
-            var apiItemsList = JSON.parse(data[0].body).items.slice(0, max);
+                //if query results are empty, set to empty array and API module will exit.
+            if(JSON.parse(data[0].body).products !== undefined){
+                var apiItemsList = JSON.parse(data[0].body).products.slice(0, max);
+            }else{
+                var apiItemsList = [];                
+                completed += itemsList.length*max;
+            }
            
             //for list of matching products, trim object and add to output  
             apiItemsList.forEach(function(itemObj){
@@ -70,7 +76,13 @@ module.exports = {
         //async callback to parse data
         .then(function(data){
             //create list of item objects - limited to var "max" results per item.
-            var apiItemsList = JSON.parse(data[0].body).products.slice(0, max)
+                //if query results are empty, set to empty array and API module will exit.
+            if(JSON.parse(data[0].body).products.length !== 0){
+                var apiItemsList = JSON.parse(data[0].body).products.slice(0, max);
+            }else{
+                var apiItemsList = [];    
+                completed += itemsList.length*max;            
+            }
             
             //for list of matching products, trim object and add to output  
             apiItemsList.forEach(function(itemObj){
@@ -82,7 +94,7 @@ module.exports = {
                 apiItem.price = itemObj.salePrice;
                 apiItem.itemId = itemObj.sku;
                 apiItem.name = itemObj.name;
-                apiItem.store = "BestBuy";
+                apiItem.store = "Best Buy";
                 
                 //store item info obj (that is a possible match) into the output
                 output.push(apiItem);
