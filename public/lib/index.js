@@ -1,7 +1,10 @@
 var app = angular.module('App', ['ui.router']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
   $stateProvider
     .state('home', {
       url: '/',
@@ -16,7 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   
   
   console.log('ItemListCtrl was loaded!');
@@ -41,32 +44,30 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
-      .success(function(data){
-        animate();
+      .success(function(data){  
+        if(data.length === 0){
+          $scope.empty = true;
+          $scope.items = undefined;
+          return;
+        }else{
+          $scope.empty = false;
+        }
         if($scope.items === undefined){
           showTip();
-          setInterval(hideTip, 3000);
-          
+          setInterval(hideTip, 3000);    
         }
-        $scope.items = $scope.items || [];
+        $scope.items = [];
         data.forEach(function(item){
           $scope.items.push(item);
         });
       });
   };
 
-  //*****  CART ******//
-  $scope.addToSummary = function($event, name) {
-    // console.log(name)
-    // $scope.cart = $scope.cart || [];
-    // var item = angular.element($event.currentTarget);
-    // console.log(item);
-    // var cart = angular.element(document.querySelector('#cart'));
-    // cart.append(item.detach());
-  };
+  //*****  Summary ******//
   var sum = 0;
   $scope.getItemId = function (name, price, store) {
     $scope.cart = $scope.cart || [];
+    console.log('$scope.cart', $scope.cart)
     var item = { 
                   name: name,
                   price: price,
@@ -80,8 +81,17 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     }   
   };
 
+  //they clicked the map button in shopping list
+  $scope.map = function(){
+    $location.path("/map");
+  };
+
+  $scope.clearItems = function(){
+    $scope.items = [];
+  };
 }]);
 
+//*****  Map ******//
 app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
   //get location data, start render cascade
   var map;
