@@ -1,5 +1,7 @@
 var Promise = require("bluebird");
 var request = Promise.promisify(require('request'));
+// var wal = require('walmartAPI');
+// var best = require('bestBuyAPI');
  
     //==============Walmart API URIs======================
     var searchUrl = 'http://api.walmartlabs.com/v1/search';
@@ -17,7 +19,7 @@ module.exports = {
     //create itemsList array of user inputs, whitespace sanitized and put in array
     var itemsList = req.body.items.replace(/ /g,'').split(','),
         output = [],
-        max = 1,        //number of matching requests per API per item
+        max = 5,        //number of matching requests per API per item
         APIs = 2,       //number of APIs were using
         completed = 0,  //number of completed async http req
         queued = itemsList.length*APIs*max; //number of queued async http req

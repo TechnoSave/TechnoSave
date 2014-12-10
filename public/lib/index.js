@@ -31,13 +31,21 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.cartTip = false;
   };
 
+  var animate = function(){
+    $('#form').animate({
+      marginTop: "80px"
+      
+    }, 1000 );
+  };
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
       .success(function(data){
+        animate();
         if($scope.items === undefined){
           showTip();
           setInterval(hideTip, 3000);
+          
         }
         $scope.items = $scope.items || [];
         data.forEach(function(item){
@@ -47,7 +55,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   };
 
   //*****  CART ******//
-  $scope.addToCart = function($event, name) {
+  $scope.addToSummary = function($event, name) {
     // console.log(name)
     // $scope.cart = $scope.cart || [];
     // var item = angular.element($event.currentTarget);
@@ -55,6 +63,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     // var cart = angular.element(document.querySelector('#cart'));
     // cart.append(item.detach());
   };
+  var sum = 0;
 
   $scope.getItemId = function (name, price, store) {
     $scope.cart = $scope.cart || [];
@@ -64,7 +73,11 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
                   store: store
                 }
     $scope.cart.push(item);
-    console.log('$scope.cart', $scope.cart)
+    // calculate total price in summary table
+    for (var i = 0; i < $scope.cart.length; i++) {
+      sum += $scope.cart[i].price;
+      $scope.total = sum;
+    }   
   };
 
 }]);

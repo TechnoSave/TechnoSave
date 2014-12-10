@@ -32,18 +32,18 @@ body {
 button {
   border-radius: 0px !important;
 }
+
 table {
   width: 50% !important;
   margin:auto ;
 }
 
-.cartTable {
-  position: absolute;
-  width: 10% !important;
+.resultTable {
+  width: 100% !important;
 }
 
-.cartBtn {
-  border-radius: 5px !important;
-  margin-right: 0%;
+.cartTable {
+  margin-top: -130px;
 }
+
 
