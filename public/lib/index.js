@@ -74,13 +74,11 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
                   store: store
                 }
     $scope.cart.push(item);
-    console.log($scope.cart);
     // calculate total price in summary table
     for (var i = 0; i < $scope.cart.length; i++) {
       sum += $scope.cart[i].price;
       $scope.total = sum;
     }   
-    console.log($scope.total);
   };
 
   //they clicked the map button in shopping list
