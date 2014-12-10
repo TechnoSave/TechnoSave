@@ -44,12 +44,17 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
-      .success(function(data){
-        animate();
+      .success(function(data){  
+        if(data.length === 0){
+          $scope.empty = true;
+          $scope.items = undefined;
+          return;
+        }else{
+          $scope.empty = false;
+        }
         if($scope.items === undefined){
           showTip();
-          setInterval(hideTip, 3000);
-          
+          setInterval(hideTip, 3000);    
         }
         $scope.items = [];
         data.forEach(function(item){

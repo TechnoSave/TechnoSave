@@ -1,4 +1,13 @@
 <div ng-controller="ItemListCtrl">
+  <!--- alert -->
+  <div class="alert alert-danger alert-dismissable emptyTip" style="top:100px; position:relative;" ng-show="empty">
+     <button type="button" class="close" data-dismiss="alert" 
+        aria-hidden="true">
+        &times;
+     </button>
+     Error: No items found! Try a new keyword!
+  </div>
+  <!-- alert -->
   
   <div id="form">
       <form role="form" ng-submit="addItem()">
