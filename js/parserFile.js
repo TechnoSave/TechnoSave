@@ -38,8 +38,8 @@ module.exports = {
         .then(function(data){
             //create list of item objects - limited to var "max" results per item.
                 //if query results are empty, set to empty array and API module will exit.
-            if(JSON.parse(data[0].body).products !== undefined){
-                var apiItemsList = JSON.parse(data[0].body).products.slice(0, max);
+            if(JSON.parse(data[0].body).items !== undefined){
+                var apiItemsList = JSON.parse(data[0].body).items.slice(0, max);
             }else{
                 var apiItemsList = [];                
                 completed += itemsList.length*max;
