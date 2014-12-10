@@ -51,7 +51,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
           setInterval(hideTip, 3000);
           
         }
-        $scope.items = $scope.items || [];
+        $scope.items = [];
         data.forEach(function(item){
           $scope.items.push(item);
         });
