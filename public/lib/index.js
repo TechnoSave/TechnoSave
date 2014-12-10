@@ -63,18 +63,11 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
       });
   };
 
-  //*****  CART ******//
-  $scope.addToSummary = function($event, name) {
-    // console.log(name)
-    // $scope.cart = $scope.cart || [];
-    // var item = angular.element($event.currentTarget);
-    // console.log(item);
-    // var cart = angular.element(document.querySelector('#cart'));
-    // cart.append(item.detach());
-  };
+  //*****  Summary ******//
   var sum = 0;
   $scope.getItemId = function (name, price, store) {
     $scope.cart = $scope.cart || [];
+    console.log('$scope.cart', $scope.cart)
     var item = { 
                   name: name,
                   price: price,
@@ -98,6 +91,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
   };
 }]);
 
+//*****  Map ******//
 app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
   //get location data, start render cascade
   var map;

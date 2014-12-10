@@ -22,38 +22,39 @@
           </div>
         </div>
       </form>
-  </div>
+  </div> <!-- /#form -->
 
       
-      <button class="btn btn-danger" ng-click="clearItems()" ng-show="items" style="top:5px">Clear Items</button>
+     <!--  <button class="btn btn-danger" ng-click="clearItems()" ng-show="items" style="top:5px">Clear Items</button> -->
       
 
-      <!-- Listing results back from the API -->
-      <table class="table table-hover resultTable" ng-show="items">
-        <thead>
-          <tr>
-            <th></th>
-            <th></th>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Store</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in items" ng-click="addToSummary($event)" id="list">
-            <td><button class="btn btn-success cartBtn" ng-click="getItemId(item.name, item.price, item.store)">Add To Summary</button><td>
-            <td>{{item.name}}</td>
-            <td>{{item.price | currency:"$"}}</td>
-            <td>{{item.store}}</td>
-          </tr>  
-        </tbody>        
-      </table>
-  </div> <!-- /#results -->
+    <!-- Listing results back from the API -->
+  <div class="resultTable"> 
+    <table class="table table-hover resultTable" ng-show="items">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Store</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items" id="list">
+          <td><button class="btn btn-success cartBtn" ng-click="getItemId(item.name, item.price, item.store)">Add To Summary</button><td>
+          <td>{{item.name}}</td>
+          <td>{{item.price | currency:"$"}}</td>
+          <td>{{item.store}}</td>
+        </tr>  
+      </tbody>        
+    </table>
+  </div> <!-- /.resultTable -->
   
-
-  <!---Shopping Cart-->
-    <div>
-      <table class="table table-hover cartTable" ng-show="cart">
+  <!---Summary Table-->
+    <div class="summaryTable" ng-show="cart"> 
+      <table class="table table-hover cartTable">
+        <p>Summary</p>
         <thead>
           <tr>
             <th>Item</th>
@@ -64,17 +65,17 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="item in cart" id="cart">
+          <tr ng-repeat="item in cart">
             <td>{{item.name | limitTo: 50}}...</td>
             <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
           </tr>  
-          <td><button class="btn btn-success" ng-click="map()">Show Map</button>
+          <td><a class="btn btn-success" href="/#/map">Show Map</a>
           <td>Total: {{ total | currency:"$"}}</td>
         </tbody>        
       </table>
     </div>
-  <!---Shopping Cart-->
+  <!---Summary Table-->
   </br></br></br></br>
 
   <!--- alert -->
