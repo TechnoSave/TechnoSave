@@ -24,10 +24,6 @@
       </form>
   </div> <!-- /#form -->
 
-      
-     <!--  <button class="btn btn-danger" ng-click="clearItems()" ng-show="items" style="top:5px">Clear Items</button> -->
-      
-
     <!-- Listing results back from the API -->
   <div class="resultTable"> 
     <table class="table table-hover resultTable" ng-show="items">
@@ -69,10 +65,11 @@
             <td>{{item.name | limitTo: 50}}...</td>
             <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
-          </tr>  
+            <td><button class="btn btn-danger" id="remove" ng-click="clearItem($index)" ng-show="cart">Remove</button></td>
+          </tr>
           <td><a class="btn btn-success" href="/#/map">Show Map</a>
-          <td>Total: {{ total | currency:"$"}}</td>
-        </tbody>        
+         <!--  <td>Total: {{ total | currency:"$"}}</td> -->
+        </tbody>       
       </table>
     </div>
   <!---Summary Table-->

@@ -86,8 +86,9 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
     $location.path("/map");
   };
 
-  $scope.clearItems = function(){
-    $scope.items = [];
+  $scope.clearItem = function(index){
+    console.log('clicked', index);
+    $scope.cart.splice(index, 1);
   };
 }]);
 
