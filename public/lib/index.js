@@ -1,7 +1,10 @@
 var app = angular.module('App', ['ui.router']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
   $stateProvider
     .state('home', {
       url: '/',
@@ -16,7 +19,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 });
 
 
-app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
+app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   
   
   console.log('ItemListCtrl was loaded!');
@@ -80,6 +83,10 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     }   
   };
 
+  //they clicked the map button in shopping list
+  $scope.map = function(){
+    $location.path("/map");
+  };
 }]);
 
 app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
