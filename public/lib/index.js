@@ -87,6 +87,10 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
   $scope.map = function(){
     $location.path("/map");
   };
+
+  $scope.clearItems = function(){
+    $scope.items = [];
+  };
 }]);
 
 app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
