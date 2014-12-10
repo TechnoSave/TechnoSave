@@ -51,7 +51,7 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
           setInterval(hideTip, 3000);
           
         }
-        $scope.items = $scope.items || [];
+        $scope.items = [];
         data.forEach(function(item){
           $scope.items.push(item);
         });
@@ -86,6 +86,10 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
   //they clicked the map button in shopping list
   $scope.map = function(){
     $location.path("/map");
+  };
+
+  $scope.clearItems = function(){
+    $scope.items = [];
   };
 }]);
 
