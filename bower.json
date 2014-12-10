@@ -1,8 +1,10 @@
 {
-  "name": "Doug-Mart",
+  "name": "TechnoSave",
   "version": "0.0.0",
   "homepage": "https://github.com/essamjoubori/Doug-Mart",
   "authors": [
+    "Phil Elauria",
+    "Dave Mun",
     "Essam Al Joubori <essam.joubori@gmail.com>"
   ],
   "license": "MIT",

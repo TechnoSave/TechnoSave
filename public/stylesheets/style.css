@@ -29,7 +29,7 @@ body {
   width: 50%;
 }
 
-button {
+button, a {
   border-radius: 0px !important;
 }
 
@@ -39,11 +39,27 @@ table {
 }
 
 .resultTable {
-  width: 100% !important;
+  width: 80% !important;
+  margin: auto;
 }
 
 .cartTable {
-  margin-top: -130px;
+  width: 80%;
 }
 
+#map-canvas{
+  height: 75vh; 
+  width:100%;
+  margin-top:100px;
+}
+
+.summaryTable p {
+  width: 8%;
+  margin-left: 45%;
+  margin-top: 40px;
+  font-size: 1.5em;
+}
+.summaryTable p {
+  border-bottom: 1px solid #bdc3c7;
+}
 
