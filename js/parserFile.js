@@ -1,5 +1,7 @@
 var Promise = require("bluebird");
 var request = Promise.promisify(require('request'));
+// var wal = require('walmartAPI');
+// var best = require('bestBuyAPI');
  
     //==============Walmart API URIs======================
     var searchUrl = 'http://api.walmartlabs.com/v1/search';

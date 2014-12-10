@@ -4,7 +4,7 @@ var js = require('../js/parserFile.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: "Shop 'N Save" });
+  res.render('index', { title: "TechnoSave" });
 });
 
 router.post('/', function(req, res) {
