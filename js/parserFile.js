@@ -39,7 +39,6 @@ module.exports = {
             //create list of item objects - limited to var "max" results per item.
                 //if query results are empty, set to empty array and API module will exit.
             if(JSON.parse(data[0].body).products !== undefined){
-                console.log("walmart empty");
                 var apiItemsList = JSON.parse(data[0].body).products.slice(0, max);
             }else{
                 var apiItemsList = [];                
@@ -79,7 +78,6 @@ module.exports = {
             //create list of item objects - limited to var "max" results per item.
                 //if query results are empty, set to empty array and API module will exit.
             if(JSON.parse(data[0].body).products.length !== 0){
-                console.log("bb empty");
                 var apiItemsList = JSON.parse(data[0].body).products.slice(0, max);
             }else{
                 var apiItemsList = [];    
