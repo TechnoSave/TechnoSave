@@ -8,6 +8,10 @@ body {
   font-weight: 500;
 }
 
+.alert {
+  text-align: center;
+}
+
 .navbar-default {
   background-color: #22313F;
 }
@@ -28,4 +32,18 @@ body {
 button {
   border-radius: 0px !important;
 }
+
+table {
+  width: 50% !important;
+  margin:auto ;
+}
+
+.resultTable {
+  width: 100% !important;
+}
+
+.cartTable {
+  margin-top: -130px;
+}
+
 
