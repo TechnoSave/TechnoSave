@@ -23,13 +23,13 @@ Once the project moves into development, the press release can be used as a touc
   Get the best deals on your tech-gear shopping list near you. 
 
 ## Summary ##
-  This app finds the lowest prices for your electronics shopping list. Enter your items, get the results back on the best prices to plan your shopping day accordingly.
+  This app finds the lowest prices for your electronics shopping list. Enter your items, get the results back on the best prices to plan your shopping day accordingly with our Maps feature (powered by Google).
 
 ## Problem ##
   Ever buy a new piece of tech-gear, only to find out later that you paid more than you had to? Ever just wonder if you're getting the best deal?
 
 ## Solution ##
-  Our app will tell you the best places to go for your shopping list. From there, you can buy those items knowing you're getting the best deals.
+  Our app will search all the major stores near you and display the results. Buy with confidence knowing you're getting the best deal around!
 
 ## Quote from You ##
   Phil Elauria: "Download this app, get a free cookie!"
@@ -38,7 +38,7 @@ Once the project moves into development, the press release can be used as a touc
   Visit our live demo at our Heroku location (coming soon).
 
 ## Customer Quote ##
-  Quote from a customer: "The cookies are delicious!""
+  Quote from a customer: "The cookies are delicious!"
 
 ## Closing and Call to Action ##
   Click {{heroku link}} to start saving!
