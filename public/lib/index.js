@@ -6,6 +6,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('home', {
       url: '/',
       templateUrl: 'partial-items.html'
+    })
+    .state('map', {
+      url: '/map',
+      templateUrl: 'map.html'
     });
 
     $urlRouterProvider.otherwise('/');
@@ -76,4 +80,14 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     }   
   };
 
+}]);
+
+app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
+  //get location data, start render cascade
+  var map;
+  var infowindow;
+  //map all electronics stores with keyword "Best Buy"
+  geoMap("Best Buy", ['electronics_store']);
+  //map all electronics stores with keyword "Walmart"
+  geoMap("Walmart", ['electronics_store']);
 }]);
