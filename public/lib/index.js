@@ -18,6 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
   
+  
   console.log('ItemListCtrl was loaded!');
 
   $scope.tip = false;
@@ -64,7 +65,6 @@ app.controller('ItemListCtrl', ['$scope', '$http', function ($scope, $http) {
     // cart.append(item.detach());
   };
   var sum = 0;
-
   $scope.getItemId = function (name, price, store) {
     $scope.cart = $scope.cart || [];
     var item = { 
