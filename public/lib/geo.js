@@ -1,4 +1,4 @@
-var geoMap = function(store) {
+var geoMap = function(store, category) {
   var startPos;
   var geoOptions = {
     enableHighAccuracy: true
@@ -8,7 +8,7 @@ var geoMap = function(store) {
     startPos = position;
     $('#geoPos').attr("latitude", startPos.coords.latitude);
     $('#geoPos').attr("longitude", startPos.coords.longitude);
-    geoInit(store);
+    geoInit(store, category);
   };
   var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);
@@ -23,7 +23,7 @@ var geoMap = function(store) {
 };
 
 //=======map canvas==========
-function geoInit(storeKeyword) {
+function geoInit(storeKeyword, category) {
   var lat = document.getElementById('geoPos').getAttribute("latitude");
   var lng = document.getElementById('geoPos').getAttribute("longitude");
   var place = new google.maps.LatLng(lat, lng);
@@ -37,7 +37,7 @@ function geoInit(storeKeyword) {
     location: place,
     radius: 10000,
     keyword: storeKeyword,
-    types: ['electronics_store']
+    types: category
   };
 
   infowindow = new google.maps.InfoWindow();
