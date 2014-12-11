@@ -1,6 +1,6 @@
-var app = angular.module('App', ['ui.router']);
+angular.module('App', ['ui.router'])
 
-app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode({
     enabled: true,
     requireBase: false
@@ -16,14 +16,11 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     });
 
     $urlRouterProvider.otherwise('/');
-});
+})
 
 
-app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   
-  
-  console.log('ItemListCtrl was loaded!');
-
   $scope.tip = false;
   $scope.cartTip = false;
 
@@ -37,14 +34,15 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
 
   var animate = function(){
     $('#form').animate({
-      marginTop: "80px"
+      marginTop: "-8%"
       
     }, 1000 );
   };
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
-      .success(function(data){  
+      .success(function(data){ 
+        animate();
         if(data.length === 0){
           $scope.empty = true;
           $scope.items = undefined;
@@ -86,13 +84,49 @@ app.controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope
     $location.path("/map");
   };
 
-  $scope.clearItems = function(){
-    $scope.items = [];
+  $scope.clearItem = function(index){
+    console.log('clicked', index);
+    $scope.cart.splice(index, 1);
   };
-}]);
+
+  var animateSummary = function(){
+    $('.summaryTable').animate({
+      marginRight: "60%",
+      width: '50%'
+      }, 1000 );
+
+  };
+   
+  var diff;
+  $scope.moveToCompare = function(name, price, store) {
+    animateSummary();
+    $scope.compare =  $scope.compare || [];
+    var item = { 
+                  name: name,
+                  price: price,
+                  store: store
+                }
+    if ($scope.compare.length < 2) {
+      $scope.compare.push(item);
+    }
+
+    if ($scope.compare.length === 2) {
+      diff = Math.abs($scope.compare[0].price - $scope.compare[1].price);
+      console.log($scope.compare); 
+      $scope.diff = diff;
+    }
+  };
+
+  $scope.clear = function() {
+    $scope.compare = [];
+    $scope.diff = [];
+  }
+
+
+}])
 
 //*****  Map ******//
-app.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
+.controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
   //get location data, start render cascade
   var map;
   var infowindow;
