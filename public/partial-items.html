@@ -62,18 +62,45 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in cart">
-            <td>{{item.name | limitTo: 50}}...</td>
+            <td>{{item.name | limitTo: 50}}...</a></td>
             <td>{{item.price | currency:"$"}}</td>
             <td>{{item.store}}</td>
             <td><button class="btn btn-danger" id="remove" ng-click="clearItem($index)" ng-show="cart">Remove</button></td>
+            <td><button class="btn btn-default" ng-click="moveToCompare(item.name, item.price, item.store)" ng-show="cart">Compare</button></td>
           </tr>
           <td><a class="btn btn-success" href="/#/map">Show Map</a>
-         <!--  <td>Total: {{ total | currency:"$"}}</td> -->
+          <td>Total: {{ total | currency:"$"}}</td>
         </tbody>       
       </table>
     </div>
   <!---Summary Table-->
   </br></br></br></br>
+
+    <!---Summary Table-->
+    <div class=""> 
+      <table class="table table-hover compare" ng-show="compare.length">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Store</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in compare">
+            <td>{{item.name | limitTo: 50}}...</a></td>
+            <td>{{item.price | currency:"$"}}</td>
+            <td>{{item.store}}</td>
+          </tr>
+          <td><button class="btn btn-danger" id="remove" ng-click="clear()" ng-show="compare">Clear</button></td>
+          <td id="savings">Savings: {{ diff | currency:"$" }}</td>
+        </tbody>       
+      </table>
+    </div>
+  <!---Summary Table-->
+
 
   <!--- alert -->
   <!-- <div class="alert alert-info alert-dismissable cartTip" ng-show="cartTip">
