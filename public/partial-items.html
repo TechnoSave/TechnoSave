@@ -1,5 +1,6 @@
 <div ng-controller="ItemListCtrl">
-  <!--- alert -->
+
+  <!--- If no results found from user input, notifies user -->
   <div class="alert alert-danger alert-dismissable emptyTip" style="top:100px; position:relative;" ng-show="empty">
      <button type="button" class="close" data-dismiss="alert" 
         aria-hidden="true">
@@ -7,8 +8,8 @@
      </button>
      Error: No items found! Try a new keyword!
   </div>
-  <!-- alert -->
-  
+
+  <!-- Input bar and submit button -->
   <div id="form">
       <form role="form" ng-submit="addItem()">
         <div class="col-md-12">
@@ -24,7 +25,7 @@
       </form>
   </div> <!-- /#form -->
 
-    <!-- Listing results back from the API -->
+  <!-- Listing results back from the API. Table for search results. -->
   <div class="resultTable"> 
     <table class="table table-hover resultTable" ng-show="items">
       <thead>
@@ -47,7 +48,7 @@
     </table>
   </div> <!-- /.resultTable -->
   
-  <!---Summary Table-->
+  <!---Summary Table/ Shopping List Table-->
     <div class="summaryTable" ng-show="cart"> 
       <table class="table table-hover cartTable">
         <p>Summary</p>
@@ -76,7 +77,7 @@
   <!---Summary Table-->
   </br></br></br></br>
 
-    <!---Summary Table-->
+    <!---Compare Table. Accepts up to two items and shows price difference-->
     <div class=""> 
       <table class="table table-hover compare" ng-show="compare.length">
         <thead>
@@ -99,16 +100,4 @@
         </tbody>       
       </table>
     </div>
-  <!---Summary Table-->
-
-
-  <!--- alert -->
-  <!-- <div class="alert alert-info alert-dismissable cartTip" ng-show="cartTip">
-     <button type="button" class="close" data-dismiss="alert" 
-        aria-hidden="true">
-        &times;
-     </button>
-     Click items to put them in your cart!
-  </div> -->
-  <!-- alert -->
 </div>

@@ -15,9 +15,9 @@ var request = Promise.promisify(require('request'));
 module.exports = {
   parser : function(req, res){
     //create itemsList array of user inputs, whitespace sanitized and put in array
-    var itemsList = req.body.items.replace(/ /g,'').split(','),
+    var itemsList = req.body.items.trim().split(','),
         output = [],
-        max = 5,        //number of matching requests per API per item
+        max = 10,        //number of matching requests per API per item
         APIs = 2,       //number of APIs were using
         completed = 0,  //number of completed async http req
         queued = itemsList.length*APIs*max; //number of queued async http req
@@ -93,7 +93,6 @@ module.exports = {
                 apiItem.itemId = itemObj.sku;
                 apiItem.name = itemObj.name;
                 apiItem.store = "Best Buy";
-                
                 //store item info obj (that is a possible match) into the output
                 output.push(apiItem);
                 completed++;
