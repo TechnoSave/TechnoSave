@@ -1,3 +1,4 @@
+// TODO: complete testing the controller
 "use strict";
 
 describe('ItemListCtrl', function () {
@@ -30,8 +31,8 @@ describe('ItemListCtrl', function () {
 
   it('should have addItem, getItemId, map, and clearItem functions', function() {
     createController();
-    console.log('$scope.showTip', $scope.showTip);
-    //expect($scope.showTip).to.be.a('function');
+    // console.log('$scope.showTip', $scope.showTip);
+    // expect($scope.showTip).to.be.a('function');
     // expect($scope.getItemId).to.be.a('function');
     // expect($scope.map).to.be.a('function');
     // expect($scope.clearItem).to.be.a('function');

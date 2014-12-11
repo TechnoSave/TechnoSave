@@ -1,5 +1,6 @@
 angular.module('App', ['ui.router'])
 
+//*****  Route Config ******//
 .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
   $locationProvider.html5Mode({
     enabled: true,
@@ -14,30 +15,29 @@ angular.module('App', ['ui.router'])
       url: '/map',
       templateUrl: 'map.html'
     });
-
+    // default router
     $urlRouterProvider.otherwise('/');
 })
 
-
+//*****  ItemList controller ******//
 .controller('ItemListCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   
-  $scope.tip = false;
-  $scope.cartTip = false;
-
-  var showTip = function(){
-    $scope.cartTip = true;
-  };
-
-  var hideTip = function(){
-    $scope.cartTip = false;
-  };
-
+  //*****  main page animation ******//
   var animate = function(){
     $('#form').animate({
       marginTop: "-8%"
       
     }, 1000 );
   };
+
+  var animateSummary = function(){
+    $('.summaryTable').animate({
+      marginRight: "60%",
+      width: '50%'
+      }, 1000 );
+  };
+  //*****  end of animation ******//
+
   //*****  post and get from API ******//
   $scope.addItem = function() {
     $http.post('/', {items: $scope.inputModel})
@@ -50,10 +50,6 @@ angular.module('App', ['ui.router'])
         }else{
           $scope.empty = false;
         }
-        if($scope.items === undefined){
-          showTip();
-          setInterval(hideTip, 3000);    
-        }
         $scope.items = [];
         data.forEach(function(item){
           $scope.items.push(item);
@@ -61,42 +57,38 @@ angular.module('App', ['ui.router'])
       });
   };
 
-  //*****  Summary ******//
-  var sum = 0;
+  // calculate total price in summary table
+  $scope.calculateSum = function(){
+    var sum = 0;
+    for (var i = 0; i < $scope.cart.length; i++) {
+      sum += $scope.cart[i].price;
+      $scope.total = sum;
+    } 
+  };
+
+  //*****  Summary Table ******//
   $scope.getItemId = function (name, price, store) {
     $scope.cart = $scope.cart || [];
-    console.log('$scope.cart', $scope.cart)
     var item = { 
                   name: name,
                   price: price,
                   store: store
                 }
     $scope.cart.push(item);
-    // calculate total price in summary table
-    for (var i = 0; i < $scope.cart.length; i++) {
-      sum += $scope.cart[i].price;
-      $scope.total = sum;
-    }   
+    $scope.calculateSum(); 
   };
 
   //they clicked the map button in shopping list
   $scope.map = function(){
     $location.path("/map");
   };
-
+  // clear one item at a time
   $scope.clearItem = function(index){
-    console.log('clicked', index);
     $scope.cart.splice(index, 1);
+    $scope.calculateSum(); 
   };
 
-  var animateSummary = function(){
-    $('.summaryTable').animate({
-      marginRight: "60%",
-      width: '50%'
-      }, 1000 );
-
-  };
-   
+  //*****  Compare Table ******//
   var diff;
   $scope.moveToCompare = function(name, price, store) {
     animateSummary();
@@ -112,20 +104,17 @@ angular.module('App', ['ui.router'])
 
     if ($scope.compare.length === 2) {
       diff = Math.abs($scope.compare[0].price - $scope.compare[1].price);
-      console.log($scope.compare); 
       $scope.diff = diff;
     }
   };
-
+  // clear the compare list
   $scope.clear = function() {
     $scope.compare = [];
     $scope.diff = [];
   }
-
-
 }])
 
-//*****  Map ******//
+//*****  Map Controller ******//
 .controller('MapCtrl', ['$scope', '$http', function ($scope, $http) { 
   //get location data, start render cascade
   var map;
