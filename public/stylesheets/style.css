@@ -63,3 +63,15 @@ table {
   border-bottom: 1px solid #bdc3c7;
 }
 
+.compare {
+  width: 44%!important;
+  float: right;
+  margin-top: -390px;
+}
+
+#savings {
+  width: 0px;
+  font-size: 1.4em;
+  font-weight: 800;
+}
+

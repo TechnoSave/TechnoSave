@@ -4,31 +4,38 @@
     <title>Techno$ave Test Suite</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="lib/css/mocha.css" />
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="lib/chai.js"></script>
     <script src="lib/mocha.js"></script>
     <script src="lib/sinon.js"></script>
     <script src="lib/sinon-chai.js"></script>
     <script src="lib/cardboard.js"></script>
     <script src="lib/testSupport.js"></script>
+    <script src="lib/angular/angular-mocks.js"></script>
 
-    <!-- Source files -->
-    <script src="../js/parserFile.js"></script>
-    <!-- End source files -->
 
     <!-- Test files -->
     <script>
-          var clock;
+      var clock;
 
-          before(function() {
-            clock = sinon.useFakeTimers();
-          });
+      before(function() {
+        clock = sinon.useFakeTimers();
+      });
 
-          after(function() {
-            clock.restore();
-          });
+      after(function() {
+        clock.restore();
+      });
     </script>
-    <script src="spec/UISpec.js"></script>
+  
+    <!-- Source files -->
+    <script src="../public/lib/index.js"></script>
+    <!-- End source files -->
     <!-- End test files -->
+    <script src="spec/UISpecs.js"></script>
+    <script src="spec/routingSpecs.js"></script>
   </head>
   <body>
     <div id="mocha"></div>
