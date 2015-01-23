@@ -4,7 +4,7 @@ var request = Promise.promisify(require('request'));
     //==============Walmart API URIs======================
     var searchUrl = 'http://api.walmartlabs.com/v1/search';
     var itemIDLookupUrl = 'http://api.walmartlabs.com/v1/items/';
-    var APIKey = '4z8pkk2ycuvewyydr4mf3ha5';
+    var APIKey = 'en9ypax2f2ju9mrnmxqmzj9w';
     //==============Walmart API URIs======================
 
     //==============BestBuy API URIs======================
